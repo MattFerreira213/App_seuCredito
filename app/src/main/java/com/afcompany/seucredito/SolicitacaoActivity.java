@@ -44,27 +44,42 @@ public class SolicitacaoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (validate()){
-                    Toast.makeText(SolicitacaoActivity.this, R.string.error_msg2, LENGTH_LONG).show();
+                    Toast.makeText(SolicitacaoActivity.this, R.string.error_msg2, LENGTH_SHORT).show();
                     return;
                 }
 
                 String sIdade = edtIdade.getText().toString();
                 String sRendaMensal = edtRendaMensal.getText().toString();
+                String sValorEmprestimo = edtValorEmprestimo.getText().toString();
 
+                double valorEmprestimo = Double.parseDouble(sValorEmprestimo);
                 double rendaMesnal = Double.parseDouble(sRendaMensal);
                 int idade = Integer.parseInt(sIdade);
 
+
                 if(idade >= IDADE && rendaMesnal >= SALARIO_MINIMO) {
-                    Intent in = new Intent(SolicitacaoActivity.this, OpcoesCreditoActivity.class);
-                    startActivity(in);
+                    if(rendaMesnal >= SALARIO_MINIMO && rendaMesnal < (3 * SALARIO_MINIMO) && valorEmprestimo >= 150 && valorEmprestimo <= 4400){
+                        Intent in = new Intent(SolicitacaoActivity.this, Proposta1Activity.class);
+                        startActivity(in);
+                    } else if (rendaMesnal >= (3 * SALARIO_MINIMO) && rendaMesnal < (6 * SALARIO_MINIMO) && valorEmprestimo > 4400 && valorEmprestimo <= 13200){
+                        Intent in = new Intent(SolicitacaoActivity.this, Proposta2Activity.class);
+                        startActivity(in);
+                    } else if (rendaMesnal >= (6 * SALARIO_MINIMO) && rendaMesnal < (8 * SALARIO_MINIMO) && valorEmprestimo > 13200 && valorEmprestimo <= 26400){
+                        Intent in = new Intent(SolicitacaoActivity.this, Proposta3Activity.class);
+                        startActivity(in);
+                    } else if (rendaMesnal >= (8 * SALARIO_MINIMO) && valorEmprestimo > 26400 && valorEmprestimo <= 40000){
+                        Intent in = new Intent(SolicitacaoActivity.this, Proposta4Activity.class);
+                        startActivity(in);
+                    } else {
+                        Toast.makeText(SolicitacaoActivity.this, R.string.msg_negado, LENGTH_SHORT).show();
+                        return;
+                    }
                 } else {
-                    Toast.makeText(SolicitacaoActivity.this, R.string.error_msg, LENGTH_LONG).show();
+                    Toast.makeText(SolicitacaoActivity.this, R.string.error_msg, LENGTH_SHORT).show();
                     return;
                 }
-
             }
         });
-
     }
 
     private void Toolbar() {

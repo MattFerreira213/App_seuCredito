@@ -12,7 +12,7 @@
         <activity android:name=".SolicitacaoActivity"
             android:parentActivityName=".MainActivity"
             />
-        <activity android:name=".OpcoesCreditoActivity"
+        <activity android:name=".Proposta1Activity"
             android:parentActivityName=".SolicitacaoActivity"
             />
         <activity android:name=".MainActivity">

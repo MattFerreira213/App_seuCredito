@@ -6,12 +6,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class OpcoesCreditoActivity extends AppCompatActivity {
+public class Proposta3Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opcoes_credito);
+        setContentView(R.layout.activity_proposta_3);
 
         Toolbar();
     }
