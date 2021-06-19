@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="CPF:"
         android:textColor="@color/standard_color_light"
         android:textSize="20sp"
@@ -68,58 +68,43 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_cpf" />
 
     <TextView
-        android:id="@+id/txt_data_nascimento"
+        android:id="@+id/txt_idade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:text="Nascimento:"
-        android:textSize="20sp"
-        android:textColor="@color/standard_color_light"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@color/standard_color_light"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_cpf" />
+        android:text="Idade:"
+        android:textColor="@color/standard_color_light"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/txt_cpf"
+        app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
 
-    <LinearLayout
-        android:id="@+id/lnl_data_nascimento"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/edt_idade"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_data_nascimento" >
-
-        <EditText
-            android:id="@+id/edt_data_nascimento"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/standard_color_light"
-            android:ems="10"
-            android:enabled="false"
-            android:textColor="@color/standard_color_light"/>
-
-        <ImageView
-            android:id="@+id/img_dataNascimento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            app:srcCompat="@android:drawable/ic_menu_month" />
-    </LinearLayout>
-
+        android:backgroundTint="@color/standard_color_light"
+        android:ems="10"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:maxLength="2"
+        android:textColor="@color/standard_color_light"
+        app:layout_constraintTop_toBottomOf="@+id/txt_idade"
+        app:layout_constraintStart_toStartOf="@id/txt_idade" />
 
     <TextView
         android:id="@+id/txt_renda_mensal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Renda Mensal:"
         android:textColor="@color/standard_color_light"
         android:backgroundTint="@color/standard_color_light"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lnl_data_nascimento" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_cpf" />
 
     <EditText
         android:id="@+id/edt_renda_mensal"
@@ -138,7 +123,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Valor do Emprestimo:"
         android:textColor="@color/standard_color_light"
         android:backgroundTint="@color/standard_color_light"
@@ -163,7 +148,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:text="Parcelas:"
         android:textColor="@color/standard_color_light"
         android:backgroundTint="@color/standard_color_light"
@@ -189,7 +174,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="90dp"
+        android:layout_marginBottom="120dp"
         android:text="Solicitar Credito"
         android:textColor="@color/white"
         android:background="@drawable/bg_standard_button"
