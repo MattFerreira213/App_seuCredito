@@ -1,8 +1,6 @@
 package com.afcompany.seucredito;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -59,22 +57,22 @@ public class SolicitacaoActivity extends AppCompatActivity {
 
                 if (idade >= IDADE && rendaMesnal >= SALARIO_MINIMO) {
                     if (rendaMesnal >= SALARIO_MINIMO && rendaMesnal < (3 * SALARIO_MINIMO) && valorEmprestimo >= 150 && valorEmprestimo <= 4400) {
-                        Intent in = new Intent(SolicitacaoActivity.this, Proposta1Activity.class);
+                        Intent in = new Intent(SolicitacaoActivity.this, PrimeiraOpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
                         finish();
                     } else if (rendaMesnal >= (3 * SALARIO_MINIMO) && rendaMesnal < (6 * SALARIO_MINIMO) && valorEmprestimo > 4400 && valorEmprestimo <= 13200) {
-                        Intent in = new Intent(SolicitacaoActivity.this, Proposta2Activity.class);
+                        Intent in = new Intent(SolicitacaoActivity.this, SegundaOpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
                         finish();
                     } else if (rendaMesnal >= (6 * SALARIO_MINIMO) && rendaMesnal < (8 * SALARIO_MINIMO) && valorEmprestimo > 13200 && valorEmprestimo <= 26400) {
-                        Intent in = new Intent(SolicitacaoActivity.this, Proposta3Activity.class);
+                        Intent in = new Intent(SolicitacaoActivity.this, TerceiraOpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
                         finish();
                     } else if (rendaMesnal >= (8 * SALARIO_MINIMO) && valorEmprestimo > 26400 && valorEmprestimo <= 40000) {
-                        Intent in = new Intent(SolicitacaoActivity.this, Proposta4Activity.class);
+                        Intent in = new Intent(SolicitacaoActivity.this, QuartaOpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
                         finish();

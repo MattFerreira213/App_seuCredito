@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class Proposta2Activity extends AppCompatActivity {
+public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
 
     private EditText edtParcelas;
     private TextView txtOpcao1;
@@ -48,7 +48,7 @@ public class Proposta2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (edtParcelas.getText().toString().isEmpty()) {
-                    Toast.makeText(Proposta2Activity.this, R.string.error_msg3, LENGTH_SHORT).show();
+                    Toast.makeText(SegundaOpcaoPagamentoAct.this, R.string.error_msg3, LENGTH_SHORT).show();
                     return;
                 }
 
