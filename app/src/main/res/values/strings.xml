@@ -4,4 +4,5 @@
     <string name="error_msg">Você não pode ter menos de 18 anos nem uma renda menor que um salario mínimo!</string>
     <string name="error_msg2">Todos o campos devem ser preenchidos e diferentes de 0!</string>
     <string name="msg_negado">Valor de emprestimo não permitido!</string>
+    <string name="error_msg3">Campo não pode ser nulo!</string>
 </resources>

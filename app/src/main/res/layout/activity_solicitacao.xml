@@ -1,181 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    tools:context=".MainActivity">
+    android:background="@color/white">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/standard_color_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txt_nome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="20dp"
-        android:maxLength="50"
-        android:text="Nome: "
-        android:textSize="20sp"
-        android:textColor="@color/standard_color_light"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/standard_color_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_nome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:textColor="@color/standard_color_light"
-        android:backgroundTint="@color/standard_color_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nome" />
+        <TextView
+            android:id="@+id/txt_nome"
+            style="@style/TextViewForm"
+            android:maxLength="50"
+            android:text="Nome: "
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <TextView
-        android:id="@+id/txt_cpf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:text="CPF:"
-        android:textColor="@color/standard_color_light"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
+        <EditText
+            android:id="@+id/edt_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:backgroundTint="@color/standard_color_light"
+            android:textColor="@color/standard_color_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_nome" />
 
-    <EditText
-        android:id="@+id/edt_cpf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/standard_color_light"
-        android:ems="10"
-        android:inputType="number"
-        android:maxLength="11"
-        android:textColor="@color/standard_color_light"
-        app:layout_constraintStart_toStartOf="@+id/txt_cpf"
-        app:layout_constraintTop_toBottomOf="@+id/txt_cpf" />
+        <TextView
+            android:id="@+id/txt_cpf"
+            style="@style/TextViewForm"
+            android:text="CPF:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
 
-    <TextView
-        android:id="@+id/txt_idade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="230dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/standard_color_light"
-        android:text="Idade:"
-        android:textColor="@color/standard_color_light"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/txt_cpf"
-        app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
+        <EditText
+            android:id="@+id/edt_cpf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/standard_color_light"
+            android:ems="7"
+            android:inputType="number"
+            android:maxLength="11"
+            android:textColor="@color/standard_color_light"
+            app:layout_constraintStart_toStartOf="@+id/txt_cpf"
+            app:layout_constraintTop_toBottomOf="@+id/txt_cpf" />
 
-    <EditText
-        android:id="@+id/edt_idade"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/standard_color_light"
-        android:ems="10"
-        android:inputType="number"
-        android:textAlignment="center"
-        android:maxLength="2"
-        android:textColor="@color/standard_color_light"
-        app:layout_constraintTop_toBottomOf="@+id/txt_idade"
-        app:layout_constraintStart_toStartOf="@id/txt_idade" />
+        <TextView
+            android:id="@+id/txt_idade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="230dp"
+            android:layout_marginTop="40dp"
+            android:backgroundTint="@color/standard_color_light"
+            android:text="Idade:"
+            android:textColor="@color/standard_color_light"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/txt_cpf"
+            app:layout_constraintTop_toBottomOf="@+id/edt_nome" />
 
-    <TextView
-        android:id="@+id/txt_renda_mensal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:text="Renda Mensal:"
-        android:textColor="@color/standard_color_light"
-        android:backgroundTint="@color/standard_color_light"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_cpf" />
+        <EditText
+            android:id="@+id/edt_idade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/standard_color_light"
+            android:ems="2"
+            android:inputType="number"
+            android:maxLength="2"
+            android:textAlignment="center"
+            android:textColor="@color/standard_color_light"
+            app:layout_constraintStart_toStartOf="@id/txt_idade"
+            app:layout_constraintTop_toBottomOf="@+id/txt_idade" />
 
-    <EditText
-        android:id="@+id/edt_renda_mensal"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/standard_color_light"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:textColor="@color/standard_color_light"
-        app:layout_constraintStart_toStartOf="@+id/txt_renda_mensal"
-        app:layout_constraintTop_toBottomOf="@+id/txt_renda_mensal" />
+        <TextView
+            android:id="@+id/txt_renda_mensal"
+            style="@style/TextViewForm"
+            android:text="Renda Mensal:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_cpf" />
 
-    <TextView
-        android:id="@+id/txt_valor_emprestimo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:text="Valor do Emprestimo:"
-        android:textColor="@color/standard_color_light"
-        android:backgroundTint="@color/standard_color_light"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_renda_mensal" />
+        <EditText
+            android:id="@+id/edt_renda_mensal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/standard_color_light"
+            android:ems="5"
+            android:inputType="numberDecimal"
+            android:textColor="@color/standard_color_light"
+            app:layout_constraintStart_toStartOf="@+id/txt_renda_mensal"
+            app:layout_constraintTop_toBottomOf="@+id/txt_renda_mensal" />
 
-    <EditText
-        android:id="@+id/edt_valor_emprestimo"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/standard_color_light"
-        android:ems="10"
-        android:inputType="numberDecimal"
-        android:textColor="@color/standard_color_light"
-        app:layout_constraintStart_toStartOf="@+id/txt_valor_emprestimo"
-        app:layout_constraintTop_toBottomOf="@+id/txt_valor_emprestimo" />
+        <TextView
+            android:id="@+id/txt_valor_emprestimo"
+            style="@style/TextViewForm"
+            android:text="Valor do Emprestimo:"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_renda_mensal" />
 
-    <TextView
-        android:id="@+id/txt_parcelas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@color/standard_color_light"
-        android:text="Parcelas:"
-        android:textColor="@color/standard_color_light"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_idade"
-        app:layout_constraintTop_toBottomOf="@+id/edt_renda_mensal" />
+        <EditText
+            android:id="@+id/edt_valor_emprestimo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/standard_color_light"
+            android:ems="5"
+            android:inputType="numberDecimal"
+            android:textColor="@color/standard_color_light"
+            app:layout_constraintStart_toStartOf="@+id/txt_valor_emprestimo"
+            app:layout_constraintTop_toBottomOf="@+id/txt_valor_emprestimo" />
 
-    <EditText
-        android:id="@+id/edt_parcelas"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textColor="@color/standard_color_light"
-        android:backgroundTint="@color/standard_color_light"
-        android:inputType="number"
-        android:maxLength="2"
-        app:layout_constraintStart_toStartOf="@+id/txt_parcelas"
-        app:layout_constraintTop_toBottomOf="@+id/txt_parcelas" />
+        <Button
+            android:id="@+id/btn_oferta_credito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="45dp"
+            android:background="@drawable/bg_standard_button"
+            android:text="Solicitar Credito"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_valor_emprestimo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/btn_oferta_detalhes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="120dp"
-        android:text="Solicitar Credito"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_standard_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
