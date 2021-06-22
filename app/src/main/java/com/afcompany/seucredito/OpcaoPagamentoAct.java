@@ -274,7 +274,7 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
-                            salvar.putString("pagamento", txtOpcao4.getText().toString());
+                            salvar.putString("pagamento", txtOpcao1.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
                             salvar.putString("taxa", "1,8");
                             salvar.apply();
@@ -292,7 +292,7 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
-                            salvar.putString("pagamento", txtOpcao4.getText().toString());
+                            salvar.putString("pagamento", txtOpcao2.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
                             salvar.putString("taxa", "1,8");
                             salvar.apply();
@@ -310,7 +310,7 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
-                            salvar.putString("pagamento", txtOpcao4.getText().toString());
+                            salvar.putString("pagamento", txtOpcao3.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
                             salvar.putString("taxa", "1,8");
                             salvar.apply();
@@ -375,7 +375,7 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
-                            salvar.putString("pagamento", txtOpcao4.getText().toString());
+                            salvar.putString("pagamento", txtOpcao1.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
                             salvar.putString("taxa", "2,4");
                             salvar.apply();
@@ -393,7 +393,7 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
 
                             //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             salvar.putString("parcelas", edtParcelas.getText().toString());
-                            salvar.putString("pagamento", txtOpcao4.getText().toString());
+                            salvar.putString("pagamento", txtOpcao2.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
                             salvar.putString("taxa", "2,4");
                             salvar.apply();
@@ -411,7 +411,7 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
-                            salvar.putString("pagamento", txtOpcao4.getText().toString());
+                            salvar.putString("pagamento", txtOpcao3.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
                             salvar.putString("taxa", "2,4");
                             salvar.apply();
