@@ -65,38 +65,13 @@ public class SolicitacaoActivity extends AppCompatActivity {
                 //VERIFICAÇÃO COM BASE NOS CRITÉRIOS PARA SOLICITAÇÃO DO EMPRÉSTIMO
                 if (idade >= IDADE && rendaMesnal >= SALARIO_MINIMO) {
 
-                    //ATÉ 3 SALÁRIOS MÍNIMOS LIMITE DE R$4400
-                    if (rendaMesnal >= SALARIO_MINIMO && rendaMesnal <= (3 * SALARIO_MINIMO) && valorEmprestimo >= 150 && valorEmprestimo <= 4400) {
+                    //LIMITE DE CRÉDITO É DE ATÉ 5x A RENDA MENSAL
+                    if (valorEmprestimo >= 150 && valorEmprestimo <= 5 * rendaMesnal) {
                         Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
 
                         GuardaDados();
-
-                        //ATÉ 6 SALÁRIOS MÍNIMOS LIMITE DE R$13200
-                    } else if (rendaMesnal > (3 * SALARIO_MINIMO) && rendaMesnal <= (6 * SALARIO_MINIMO) && valorEmprestimo > 4400 && valorEmprestimo <= 13200) {
-                        Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
-                        in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
-                        startActivity(in);
-
-                        GuardaDados();
-
-                        //ATÉ 8 SALÁRIOS MÍNIMOS LIMITE DE R$26400
-                    } else if (rendaMesnal > (6 * SALARIO_MINIMO) && rendaMesnal < (8 * SALARIO_MINIMO) && valorEmprestimo > 13200 && valorEmprestimo <= 26400) {
-                        Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
-                        in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
-                        startActivity(in);
-
-                        GuardaDados();
-
-                        //MAIS DE 8 SALÁRIOS MÍNIMOS LIMITE DE R$40000
-                    } else if (rendaMesnal >= (8 * SALARIO_MINIMO) && valorEmprestimo > 26400 && valorEmprestimo <= 40000) {
-                        Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
-                        in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
-                        startActivity(in);
-
-                        GuardaDados();
-
                     } else {
                         Toast.makeText(SolicitacaoActivity.this, R.string.msg_negado, LENGTH_SHORT).show();
                         return;
