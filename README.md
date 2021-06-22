@@ -11,7 +11,7 @@ Sugiro a utilização do smartphone pois utiliza menos memória do computador e 
 
 OBS: O smartphone deve possuir no mínimo o android 5.0 (API 21)
 
-Estará disponível um arquivo APK para instalar no smartphone.
+Estará disponível um arquivo APK para instalar diretamente no smartphone e testar a aplicação.
 
 ## Regra de negócio
 O cálculo do empréstimo foi realizado com base no cálculo de juros simples.
@@ -28,7 +28,7 @@ A taxa é estipulada de acordo com a quantidade de parcelas que a pessoa solicit
 * Mais de 36x a taxa é de 2,4% ao mês
 
 As opções de pagamento para parcelas maiores ou iguais a 3.
-* X parcelas
+* X parcelas do valor total
 * Primeira parcela 20% do valor total + X parcelas do valor restante
 * Primeira parcela 25% do valor total + X parcelas do valor restante
 * Primeira parcela 30% do valor total + X parcelas do valor restante
