@@ -27,6 +27,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_detalhados);
 
+        //PEGANDO ID DOS CAMPOS PARA PASSAR ATRIBUIR OS DADOS
         txtNome = findViewById(R.id.txt_view_nome);
         txtCpf = findViewById(R.id.txt_view_cpf);
         txtIdade = findViewById(R.id.txt_view_idade);
@@ -37,6 +38,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
         txtParcelas = findViewById(R.id.txt_view_parcelas);
         txtValorTotal = findViewById(R.id.txt_total);
 
+        //ACESSANDO DADOS ARMAZEADOS E ATRIBUINDO AOS CAMPOS DE TEXTO
         SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
         txtNome.setText(dados.getString("nome", "Dados não encontrado"));
         txtCpf.setText(dados.getString("cpf", "Dados não encontrado"));
@@ -57,6 +59,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
             }
         });
 
+        //BOTÃO DE CONFIRMAÇÃO DE EMPRÉSTIMO
         Button btnConfirmar = findViewById(R.id.btn_confirmar);
         btnConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
                 Intent in = new Intent(DadosDetalhadosAct.this, MainActivity.class);
                 startActivity(in);
 
+                //DELETANDO DADOS APÓS COMFIRMAÇÃO
                 SharedPreferences dados = getSharedPreferences("apagarDadso", MODE_PRIVATE);
                 SharedPreferences.Editor apagar = dados.edit();
 
@@ -81,6 +85,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
             }
         });
 
+        //BOTÃO DE CANCELAMENTO DE SOLICITAÇÃO DE EMPRÉSTIMO
         Button btnCancelar = findViewById(R.id.btn_cancelar);
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +93,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
                 Intent in = new Intent(DadosDetalhadosAct.this, MainActivity.class);
                 startActivity(in);
 
+                //DELETANDO DADOS APÓS CANCELAMENTO
                 SharedPreferences dados = getSharedPreferences("apagarDadso", MODE_PRIVATE);
                 SharedPreferences.Editor apagar = dados.edit();
 

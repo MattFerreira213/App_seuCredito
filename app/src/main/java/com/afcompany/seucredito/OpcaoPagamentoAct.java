@@ -39,6 +39,7 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
         txtOpcao3 = findViewById(R.id.txt_opcao3);
         txtOpcao4 = findViewById(R.id.txt_opcao4);
 
+        //DEIXANDO CAMPOS SEM VISIBILIDADE
         txtOpcao1.setVisibility(View.GONE);
         txtOpcao2.setVisibility(View.GONE);
         txtOpcao3.setVisibility(View.GONE);
@@ -62,19 +63,23 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                     return;
                 }
 
-                String sParcelas = edtParcelas.getText().toString();
-                String sValorEmprestimo = getIntent().getStringExtra("valorEmprestimo");
-                int parcelas = Integer.parseInt(sParcelas);
-                double valorEmprestimo = Double.parseDouble(sValorEmprestimo);
+                //CONVERTENDO OS VALORES PARA REALIZAR A VERIFICAÇÃO DO VALOR DA TAXA E CÁLCULO DO EMPRÉSTIMO
+                int parcelas = Integer.parseInt(edtParcelas.getText().toString());
+                double valorEmprestimo = Double.parseDouble(getIntent().getStringExtra("valorEmprestimo"));
                 double valorFinal;
 
+                //ATÉ 12x TAXA DE 1,2a.m
                 if (parcelas >= 1 && parcelas <= 12) {
+                    //DADOS FORMATADOS PARA PAGAMENTO EM 1 PARCELA
                     if (parcelas == 1) {
-                        valorFinal = (valorEmprestimo * 0.035) + valorEmprestimo;
 
-                        BigDecimal pagamento = BigDecimal.valueOf(valorFinal);
-                        pagamento = pagamento.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                        //CALCULANDO VALOR TOTAL A SER PAGO
+                        valorFinal = (valorEmprestimo * 0.012) + valorEmprestimo;
 
+                        //CONVERTENDO VALOR PARA O TIPO BIGDECIMAL E ESPECIFICANDO O NÚMERO DE CASAS DECIMAIS
+                        BigDecimal pagamento = BigDecimal.valueOf(valorFinal).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+
+                        //PASSANDO OS DADOS PARA O CAMPO DE TEXTO E TORNANDO O CAMPO VISIVEL
                         txtOpcao1.setText("R$" + pagamento);
                         txtOpcao1.setVisibility(View.VISIBLE);
 
@@ -84,26 +89,33 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                                 Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
+                                //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                                 SharedPreferences.Editor salvar = dados.edit();
 
                                 salvar.putString("parcelas", edtParcelas.getText().toString());
                                 salvar.putString("pagamento", txtOpcao1.getText().toString());
                                 salvar.putString("valorTotal", String.valueOf(valorFinal));
-                                salvar.putString("taxa", "3,5");
+                                salvar.putString("taxa", "1,2");
                                 salvar.apply();
                             }
                         });
 
+                        //MANTENDO ESSE CAMPOS SEM VISIBILIDADE
                         txtOpcao2.setVisibility(View.GONE);
                         txtOpcao3.setVisibility(View.GONE);
                         txtOpcao4.setVisibility(View.GONE);
+
+                        //DADOS FORMATADOS PARA PAGAMENTO EM 2 PARCELA
                     } else if (parcelas == 2) {
-                        valorFinal = (valorEmprestimo * 2 * 0.035) + valorEmprestimo;
 
-                        BigDecimal pagamento = BigDecimal.valueOf(valorFinal / 2);
-                        pagamento = pagamento.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                        //CALCULANDO VALOR TOTAL A SER PAGO
+                        valorFinal = (valorEmprestimo * 2 * 0.012) + valorEmprestimo;
 
+                        //CONVERTENDO VALOR PARA O TIPO BIGDECIMAL E ESPECIFICANDO O NÚMERO DE CASAS DECIMAIS
+                        BigDecimal pagamento = BigDecimal.valueOf(valorFinal / 2).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+
+                        //PASSANDO OS DADOS PARA O CAMPO DE TEXTO E TORNANDO O CAMPO VISIVEL
                         txtOpcao1.setText("2x de R$" + pagamento);
                         txtOpcao1.setVisibility(View.VISIBLE);
 
@@ -113,41 +125,38 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                                 Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
+                                //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                                 SharedPreferences.Editor salvar = dados.edit();
 
                                 salvar.putString("parcelas", edtParcelas.getText().toString());
                                 salvar.putString("pagamento", txtOpcao1.getText().toString());
                                 salvar.putString("valorTotal", String.valueOf(valorFinal));
-                                salvar.putString("taxa", "3,5");
+                                salvar.putString("taxa", "1,2");
                                 salvar.apply();
                             }
                         });
 
+                        //MANTENDO ESSE CAMPOS SEM VISIBILIDADE
                         txtOpcao2.setVisibility(View.GONE);
                         txtOpcao3.setVisibility(View.GONE);
                         txtOpcao4.setVisibility(View.GONE);
                     } else {
-                        valorFinal = (valorEmprestimo * parcelas * 0.035) + valorEmprestimo;
+                        //CALCULANDO VALOR TOTAL A SER PAGO
+                        valorFinal = (valorEmprestimo * parcelas * 0.012) + valorEmprestimo;
 
-                        BigDecimal pagamentoOpcao1 = BigDecimal.valueOf(valorFinal / parcelas);
-                        BigDecimal pagamentoOpcao2 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.2)) / (parcelas - 1));
-                        BigDecimal pagamentoOpcao3 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.25)) / (parcelas - 1));
-                        BigDecimal pagamentoOpcao4 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.3)) / (parcelas - 1));
+                        //CALCULANDO VALOR DA PRIMEIRA PARCELA E ESPECIFICANDO NÚMERO DE CASAS DECIMAIS
+                        BigDecimal primeiroPagamentoOpcao2 = BigDecimal.valueOf(valorFinal * 0.2).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                        BigDecimal primeiroPagamentoOpcao3 = BigDecimal.valueOf(valorFinal * 0.25).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                        BigDecimal primeiroPagamentoOpcao4 = BigDecimal.valueOf(valorFinal * 0.3).setScale(2,BigDecimal.ROUND_HALF_EVEN);
 
-                        pagamentoOpcao1 = pagamentoOpcao1.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                        pagamentoOpcao2 = pagamentoOpcao2.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                        pagamentoOpcao3 = pagamentoOpcao3.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                        pagamentoOpcao4 = pagamentoOpcao4.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                        //CALCULANDO VALOR DAS PRÓXIMAS PARCELAS E ESPECIFICANDO NÚMERO DE CASAS DECIMAIS
+                        BigDecimal pagamentoOpcao1 = BigDecimal.valueOf(valorFinal / parcelas).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                        BigDecimal pagamentoOpcao2 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.2)) / (parcelas - 1)).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                        BigDecimal pagamentoOpcao3 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.25)) / (parcelas - 1)).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                        BigDecimal pagamentoOpcao4 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.3)) / (parcelas - 1)).setScale(2,BigDecimal.ROUND_HALF_EVEN);
 
-                        BigDecimal primeiroPagamentoOpcao2 = BigDecimal.valueOf(valorFinal * 0.2);
-                        BigDecimal primeiroPagamentoOpcao3 = BigDecimal.valueOf(valorFinal * 0.25);
-                        BigDecimal primeiroPagamentoOpcao4 = BigDecimal.valueOf(valorFinal * 0.3);
-
-                        primeiroPagamentoOpcao2 = primeiroPagamentoOpcao2.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-                        primeiroPagamentoOpcao3 = primeiroPagamentoOpcao3.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-                        primeiroPagamentoOpcao4 = primeiroPagamentoOpcao4.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-
+                        //PASSANDO OS DADOS PARA OS CAMPOS DE TEXTO
                         txtOpcao1.setText(parcelas + "x de R$" + pagamentoOpcao1);
                         txtOpcao2.setText("1x de R$" + primeiroPagamentoOpcao2 + " + " + (parcelas - 1) + "x de R$" + pagamentoOpcao2);
                         txtOpcao3.setText("1x de R$" + primeiroPagamentoOpcao3 + " + " + (parcelas - 1) + "x de R$" + pagamentoOpcao3);
@@ -159,13 +168,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                                 Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
+                                //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                                 SharedPreferences.Editor salvar = dados.edit();
 
                                 salvar.putString("parcelas", edtParcelas.getText().toString());
                                 salvar.putString("pagamento", txtOpcao1.getText().toString());
                                 salvar.putString("valorTotal", String.valueOf(valorFinal));
-                                salvar.putString("taxa", "3,5");
+                                salvar.putString("taxa", "1,2");
                                 salvar.apply();
                             }
                         });
@@ -176,13 +186,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                                 Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
+                                //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                                 SharedPreferences.Editor salvar = dados.edit();
 
                                 salvar.putString("parcelas", edtParcelas.getText().toString());
                                 salvar.putString("pagamento", txtOpcao2.getText().toString());
                                 salvar.putString("valorTotal", String.valueOf(valorFinal));
-                                salvar.putString("taxa", "3,5");
+                                salvar.putString("taxa", "1,2");
                                 salvar.apply();
                             }
                         });
@@ -193,13 +204,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                                 Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
+                                //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                                 SharedPreferences.Editor salvar = dados.edit();
 
                                 salvar.putString("parcelas", edtParcelas.getText().toString());
                                 salvar.putString("pagamento", txtOpcao3.getText().toString());
                                 salvar.putString("valorTotal", String.valueOf(valorFinal));
-                                salvar.putString("taxa", "3,5");
+                                salvar.putString("taxa", "1,2");
                                 salvar.apply();
                             }
                         });
@@ -210,43 +222,42 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                                 Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
+                                //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                                 SharedPreferences.Editor salvar = dados.edit();
 
                                 salvar.putString("parcelas", edtParcelas.getText().toString());
                                 salvar.putString("pagamento", txtOpcao4.getText().toString());
                                 salvar.putString("valorTotal", String.valueOf(valorFinal));
-                                salvar.putString("taxa", "3,5");
+                                salvar.putString("taxa", "1,2");
                                 salvar.apply();
                             }
                         });
 
+                        //TORNANDO OS CAMPOS VISIVEIS
                         txtOpcao1.setVisibility(View.VISIBLE);
                         txtOpcao2.setVisibility(View.VISIBLE);
                         txtOpcao3.setVisibility(View.VISIBLE);
                         txtOpcao4.setVisibility(View.VISIBLE);
                     }
+                    //ATÉ 36x TAXA DE 1,8a.m
                 } else if(parcelas > 12 && parcelas <= 36){
-                    valorFinal = (valorEmprestimo * parcelas * 0.042) + valorEmprestimo;
 
-                    BigDecimal pagamentoOpcao1 = BigDecimal.valueOf(valorFinal / parcelas);
-                    BigDecimal pagamentoOpcao2 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.2)) / (parcelas - 1));
-                    BigDecimal pagamentoOpcao3 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.25)) / (parcelas - 1));
-                    BigDecimal pagamentoOpcao4 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.3)) / (parcelas - 1));
+                    //CALCULANDO VALOR TOTAL A SER PAGO
+                    valorFinal = (valorEmprestimo * parcelas * 0.018) + valorEmprestimo;
 
-                    pagamentoOpcao1 = pagamentoOpcao1.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                    pagamentoOpcao2 = pagamentoOpcao2.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                    pagamentoOpcao3 = pagamentoOpcao3.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                    pagamentoOpcao4 = pagamentoOpcao4.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    //CALCULANDO VALOR DA PRIMEIRA PARCELA E ESPECIFICANDO NÚMERO DE CASAS DECIMAIS
+                    BigDecimal primeiroPagamentoOpcao2 = BigDecimal.valueOf(valorFinal * 0.2).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal primeiroPagamentoOpcao3 = BigDecimal.valueOf(valorFinal * 0.25).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal primeiroPagamentoOpcao4 = BigDecimal.valueOf(valorFinal * 0.3).setScale(2, BigDecimal.ROUND_HALF_EVEN);
 
-                    BigDecimal primeiroPagamentoOpcao2 = BigDecimal.valueOf(valorFinal * 0.2);
-                    BigDecimal primeiroPagamentoOpcao3 = BigDecimal.valueOf(valorFinal * 0.25);
-                    BigDecimal primeiroPagamentoOpcao4 = BigDecimal.valueOf(valorFinal * 0.3);
+                    //CALCULANDO VALOR DAS PRÓXIMAS PARCELAS E ESPECIFICANDO NÚMERO DE CASAS DECIMAIS
+                    BigDecimal pagamentoOpcao1 = BigDecimal.valueOf(valorFinal / parcelas).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal pagamentoOpcao2 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.2)) / (parcelas - 1)).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal pagamentoOpcao3 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.25)) / (parcelas - 1)).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal pagamentoOpcao4 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.3)) / (parcelas - 1)).setScale(2, BigDecimal.ROUND_HALF_EVEN);
 
-                    primeiroPagamentoOpcao2 = primeiroPagamentoOpcao2.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-                    primeiroPagamentoOpcao3 = primeiroPagamentoOpcao3.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-                    primeiroPagamentoOpcao4 = primeiroPagamentoOpcao4.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-
+                    //PASSANDO OS DADOS PARA OS CAMPOS DE TEXTO
                     txtOpcao1.setText(parcelas + "x de R$" + pagamentoOpcao1);
                     txtOpcao2.setText("1x de R$" + primeiroPagamentoOpcao2 + " + " + (parcelas - 1) + "x de R$" + pagamentoOpcao2);
                     txtOpcao3.setText("1x de R$" + primeiroPagamentoOpcao3 + " + " + (parcelas - 1) + "x de R$" + pagamentoOpcao3);
@@ -258,13 +269,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "4,2");
+                            salvar.putString("taxa", "1,8");
                             salvar.apply();
                         }
                     });
@@ -275,13 +287,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "4,2");
+                            salvar.putString("taxa", "1,8");
                             salvar.apply();
                         }
                     });
@@ -292,13 +305,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "4,2");
+                            salvar.putString("taxa", "1,8");
                             salvar.apply();
                         }
                     });
@@ -309,42 +323,42 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "4,2");
+                            salvar.putString("taxa", "1,8");
                             salvar.apply();
                         }
                     });
 
+                    //TORNANDO OS CAMPOS VISIVEIS
                     txtOpcao1.setVisibility(View.VISIBLE);
                     txtOpcao2.setVisibility(View.VISIBLE);
                     txtOpcao3.setVisibility(View.VISIBLE);
                     txtOpcao4.setVisibility(View.VISIBLE);
+
+                    //MAIOR QUE 36X TAXA DE 2,4a.m
                 } else if( parcelas > 36){
-                    valorFinal = (valorEmprestimo * parcelas * 0.05) + valorEmprestimo;
 
-                    BigDecimal pagamentoOpcao1 = BigDecimal.valueOf(valorFinal / parcelas);
-                    BigDecimal pagamentoOpcao2 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.2)) / (parcelas - 1));
-                    BigDecimal pagamentoOpcao3 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.25)) / (parcelas - 1));
-                    BigDecimal pagamentoOpcao4 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.3)) / (parcelas - 1));
+                    //CALCULANDO VALOR TOTAL A SER PAGO
+                    valorFinal = (valorEmprestimo * parcelas * 0.024) + valorEmprestimo;
 
-                    pagamentoOpcao1 = pagamentoOpcao1.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                    pagamentoOpcao2 = pagamentoOpcao2.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                    pagamentoOpcao3 = pagamentoOpcao3.setScale(2, BigDecimal.ROUND_HALF_EVEN);
-                    pagamentoOpcao4 = pagamentoOpcao4.setScale(2, BigDecimal.ROUND_HALF_EVEN);
+                    //CALCULANDO VALOR DA PRIMEIRA PARCELA E ESPECIFICANDO NÚMERO DE CASAS DECIMAIS
+                    BigDecimal primeiroPagamentoOpcao2 = BigDecimal.valueOf(valorFinal * 0.2).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal primeiroPagamentoOpcao3 = BigDecimal.valueOf(valorFinal * 0.25).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal primeiroPagamentoOpcao4 = BigDecimal.valueOf(valorFinal * 0.3).setScale(2,BigDecimal.ROUND_HALF_EVEN);
 
-                    BigDecimal primeiroPagamentoOpcao2 = BigDecimal.valueOf(valorFinal * 0.2);
-                    BigDecimal primeiroPagamentoOpcao3 = BigDecimal.valueOf(valorFinal * 0.25);
-                    BigDecimal primeiroPagamentoOpcao4 = BigDecimal.valueOf(valorFinal * 0.3);
+                    //CALCULANDO VALOR DAS PRÓXIMAS PARCELAS E ESPECIFICANDO NÚMERO DE CASAS DECIMAIS
+                    BigDecimal pagamentoOpcao1 = BigDecimal.valueOf(valorFinal / parcelas).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal pagamentoOpcao2 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.2)) / (parcelas - 1)).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal pagamentoOpcao3 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.25)) / (parcelas - 1)).setScale(2,BigDecimal.ROUND_HALF_EVEN);
+                    BigDecimal pagamentoOpcao4 = BigDecimal.valueOf((valorFinal - (valorFinal * 0.3)) / (parcelas - 1)).setScale(2,BigDecimal.ROUND_HALF_EVEN);
 
-                    primeiroPagamentoOpcao2 = primeiroPagamentoOpcao2.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-                    primeiroPagamentoOpcao3 = primeiroPagamentoOpcao3.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-                    primeiroPagamentoOpcao4 = primeiroPagamentoOpcao4.setScale(2,BigDecimal.ROUND_HALF_EVEN);
-
+                    //PASSANDO OS DADOS PARA OS CAMPOS DE TEXTO
                     txtOpcao1.setText(parcelas + "x de R$" + pagamentoOpcao1);
                     txtOpcao2.setText("1x de R$" + primeiroPagamentoOpcao2 + " + " + (parcelas - 1) + "x de R$" + pagamentoOpcao2);
                     txtOpcao3.setText("1x de R$" + primeiroPagamentoOpcao3 + " + " + (parcelas - 1) + "x de R$" + pagamentoOpcao3);
@@ -356,13 +370,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "5");
+                            salvar.putString("taxa", "2,4");
                             salvar.apply();
                         }
                     });
@@ -376,10 +391,11 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "5");
+                            salvar.putString("taxa", "2,4");
                             salvar.apply();
                         }
                     });
@@ -390,13 +406,14 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "5");
+                            salvar.putString("taxa", "2,4");
                             salvar.apply();
                         }
                     });
@@ -407,17 +424,19 @@ public class OpcaoPagamentoAct extends AppCompatActivity {
                             Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
+                            //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
                             SharedPreferences.Editor salvar = dados.edit();
 
                             salvar.putString("parcelas", edtParcelas.getText().toString());
                             salvar.putString("pagamento", txtOpcao4.getText().toString());
                             salvar.putString("valorTotal", String.valueOf(valorFinal));
-                            salvar.putString("taxa", "5");
+                            salvar.putString("taxa", "2,4");
                             salvar.apply();
                         }
                     });
 
+                    //TORNANDO OS CAMPOS VISIVEIS
                     txtOpcao1.setVisibility(View.VISIBLE);
                     txtOpcao2.setVisibility(View.VISIBLE);
                     txtOpcao3.setVisibility(View.VISIBLE);

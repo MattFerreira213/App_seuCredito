@@ -29,6 +29,7 @@ public class SolicitacaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solicitacao);
 
+        //PEGANDO AS INFORMAÇÕES PASSADAS DE ACORDO COM O ID
         edtNome = findViewById(R.id.edt_nome);
         edtCpf = findViewById(R.id.edt_cpf);
         edtIdade = findViewById(R.id.edt_idade);
@@ -44,50 +45,51 @@ public class SolicitacaoActivity extends AppCompatActivity {
             }
         });
 
-        int id;
-
         Button buttonOfertas = findViewById(R.id.btn_oferta_credito);
         buttonOfertas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //FAZENDO A VALIDAÇÃO DOS CAMPOS
                 if (!validate()) {
                     Toast.makeText(SolicitacaoActivity.this, R.string.error_msg2, LENGTH_SHORT).show();
                     return;
                 }
 
-                String sIdade = edtIdade.getText().toString();
-                String sRendaMensal = edtRendaMensal.getText().toString();
-                String sValorEmprestimo = edtValorEmprestimo.getText().toString();
+                //CONVERTENDO OS VALORES PARA REALIZAR A VERIFICAÇÃO DOS CRITÉRIOS PARA SOLICITAÇÃO DO EMPRÉSTIMO
+                //OBS: TEM UM ARQUIVO EXPLICANDO TODA A REGRA DE NEGÓCIO E OS CRITÉRIOS PARA SOLICITAÇÃO DO EMPRÉSTIMO
+                double valorEmprestimo = Double.parseDouble(edtValorEmprestimo.getText().toString());
+                double rendaMesnal = Double.parseDouble(edtRendaMensal.getText().toString());
+                int idade = Integer.parseInt(edtIdade.getText().toString());
 
-                double valorEmprestimo = Double.parseDouble(sValorEmprestimo);
-                double rendaMesnal = Double.parseDouble(sRendaMensal);
-                int idade = Integer.parseInt(sIdade);
-
-
-
+                //VERIFICAÇÃO COM BASE NOS CRITÉRIOS PARA SOLICITAÇÃO DO EMPRÉSTIMO
                 if (idade >= IDADE && rendaMesnal >= SALARIO_MINIMO) {
-                    if (rendaMesnal >= SALARIO_MINIMO && rendaMesnal < (3 * SALARIO_MINIMO) && valorEmprestimo >= 150 && valorEmprestimo <= 4400) {
+
+                    //ATÉ 3 SALÁRIOS MÍNIMOS LIMITE DE R$4400
+                    if (rendaMesnal >= SALARIO_MINIMO && rendaMesnal <= (3 * SALARIO_MINIMO) && valorEmprestimo >= 150 && valorEmprestimo <= 4400) {
                         Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
 
                         GuardaDados();
 
-                    } else if (rendaMesnal >= (3 * SALARIO_MINIMO) && rendaMesnal < (6 * SALARIO_MINIMO) && valorEmprestimo > 4400 && valorEmprestimo <= 13200) {
+                        //ATÉ 6 SALÁRIOS MÍNIMOS LIMITE DE R$13200
+                    } else if (rendaMesnal > (3 * SALARIO_MINIMO) && rendaMesnal <= (6 * SALARIO_MINIMO) && valorEmprestimo > 4400 && valorEmprestimo <= 13200) {
                         Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
 
                         GuardaDados();
 
-                    } else if (rendaMesnal >= (6 * SALARIO_MINIMO) && rendaMesnal < (8 * SALARIO_MINIMO) && valorEmprestimo > 13200 && valorEmprestimo <= 26400) {
+                        //ATÉ 8 SALÁRIOS MÍNIMOS LIMITE DE R$26400
+                    } else if (rendaMesnal > (6 * SALARIO_MINIMO) && rendaMesnal < (8 * SALARIO_MINIMO) && valorEmprestimo > 13200 && valorEmprestimo <= 26400) {
                         Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
                         startActivity(in);
 
                         GuardaDados();
 
+                        //MAIS DE 8 SALÁRIOS MÍNIMOS LIMITE DE R$40000
                     } else if (rendaMesnal >= (8 * SALARIO_MINIMO) && valorEmprestimo > 26400 && valorEmprestimo <= 40000) {
                         Intent in = new Intent(SolicitacaoActivity.this, OpcaoPagamentoAct.class);
                         in.putExtra("valorEmprestimo", edtValorEmprestimo.getText().toString());
@@ -107,6 +109,8 @@ public class SolicitacaoActivity extends AppCompatActivity {
         });
     }
 
+    //ARMAZENANDO DADOS INTERNAMENTE, PORQUE SERÃO UTILIZADOS NA TELA DE *DadosDetalhados*.
+    //OBS: ESSES NÃO ESTÃO SENDO PERSISTIDOS EM UMA BASE DE DADOS, APENAS GUARDADOS PARA SER UTILIZADOS NO PRÓPRIO APP
     private void GuardaDados() {
         SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
         SharedPreferences.Editor salvar = dados.edit();
@@ -119,8 +123,9 @@ public class SolicitacaoActivity extends AppCompatActivity {
         salvar.apply();
     }
 
-    private boolean validate(){
-        return(!edtIdade.getText().toString().isEmpty() && !edtRendaMensal.getText().toString().isEmpty()
+    //MÉTODO QUE FAZ A VALIDAÇÃO DOS CAMPOS PARA NÃO ACEITAR VALORES NULOS
+    private boolean validate() {
+        return (!edtIdade.getText().toString().isEmpty() && !edtRendaMensal.getText().toString().isEmpty()
                 && !edtNome.getText().toString().isEmpty() && !edtCpf.getText().toString().isEmpty()
                 && !edtValorEmprestimo.getText().toString().isEmpty());
     }
