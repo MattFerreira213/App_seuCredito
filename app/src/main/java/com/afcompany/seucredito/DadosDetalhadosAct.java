@@ -86,7 +86,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
                 apagar.remove("valorTotal");
                 apagar.apply();
 
-                Toast.makeText(DadosDetalhadosAct.this, R.string.error_msg4, LENGTH_SHORT).show();
+                Toast.makeText(DadosDetalhadosAct.this, R.string.msg_confirmacao, LENGTH_SHORT).show();
                 return;
             }
         });
@@ -114,7 +114,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
                 apagar.remove("valorTotal");
                 apagar.apply();
 
-                Toast.makeText(DadosDetalhadosAct.this, R.string.error_msg5, LENGTH_SHORT).show();
+                Toast.makeText(DadosDetalhadosAct.this, R.string.msg_confirmacao2, LENGTH_SHORT).show();
                 return;
             }
         });
