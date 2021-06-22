@@ -4,22 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".PrimeiraOpcaoPagamentoAct"
+    android:id="@+id/activity1">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:context=".SolicitacaoActivity">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/standard_color_light"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btn_voltar1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/standard_color_light"
+                android:src="@drawable/ic_baseline_arrow_back_24"
+                android:layout_gravity="center"/>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:title="@string/app_name"
+                android:background="@color/standard_color_light" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -30,7 +45,6 @@
             android:layout_marginEnd="20dp">
 
             <TextView
-                android:id="@+id/txt_parcelas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="30sp"

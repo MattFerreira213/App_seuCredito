@@ -9,12 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SeuCredito">
-        <activity android:name=".SolicitacaoActivity"
-            android:parentActivityName=".MainActivity"
-            />
-        <activity android:name=".PrimeiraOpcaoPagamentoAct"
-            android:parentActivityName=".SolicitacaoActivity"
-            />
+        <activity android:name=".DadosDetalhadosAct" />
+        <activity
+            android:name=".SolicitacaoActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".PrimeiraOpcaoPagamentoAct"
+            android:parentActivityName=".SolicitacaoActivity" />
+        <activity
+            android:name=".SegundaOpcaoPagamentoAct"
+            android:parentActivityName=".SolicitacaoActivity" />
+        <activity
+            android:name=".TerceiraOpcaoPagamentoAct"
+            android:parentActivityName=".SolicitacaoActivity" />
+        <activity
+            android:name=".QuartaOpcaoPagamentoAct"
+            android:parentActivityName=".SolicitacaoActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
