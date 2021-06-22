@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
+public class OpcaoPagamentoAct extends AppCompatActivity {
 
     private EditText edtParcelas;
     private TextView txtOpcao1;
@@ -30,41 +30,40 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_segunda_opcao_pagamento);
+        setContentView(R.layout.activity_opcao_pagamento);
 
-        edtParcelas = findViewById(R.id.edt_view2_parcelas);
+        edtParcelas = findViewById(R.id.edt_parcelas);
 
-        txtOpcao1 = findViewById(R.id.txt_view2_opcao1);
-        txtOpcao2 = findViewById(R.id.txt_view2_opcao2);
-        txtOpcao3 = findViewById(R.id.txt_view2_opcao3);
-        txtOpcao4 = findViewById(R.id.txt_view2_opcao4);
+        txtOpcao1 = findViewById(R.id.txt_opcao1);
+        txtOpcao2 = findViewById(R.id.txt_opcao2);
+        txtOpcao3 = findViewById(R.id.txt_opcao3);
+        txtOpcao4 = findViewById(R.id.txt_opcao4);
 
         txtOpcao1.setVisibility(View.GONE);
         txtOpcao2.setVisibility(View.GONE);
         txtOpcao3.setVisibility(View.GONE);
         txtOpcao4.setVisibility(View.GONE);
 
-        ImageButton btnVoltar = findViewById(R.id.btn_voltar2);
+        ImageButton btnVoltar = findViewById(R.id.btn_voltar1);
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(SegundaOpcaoPagamentoAct.this, SolicitacaoActivity.class);
+                Intent in = new Intent(OpcaoPagamentoAct.this, SolicitacaoActivity.class);
                 startActivity(in);
             }
         });
 
-        btnOpcoesParcelas = findViewById(R.id.btn_opcoes_pagamento_view2);
+        btnOpcoesParcelas = findViewById(R.id.btn_opcoes_pagamento);
         btnOpcoesParcelas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (edtParcelas.getText().toString().isEmpty()) {
-                    Toast.makeText(SegundaOpcaoPagamentoAct.this, R.string.error_msg3, LENGTH_SHORT).show();
+                    Toast.makeText(OpcaoPagamentoAct.this, R.string.error_msg3, LENGTH_SHORT).show();
                     return;
                 }
 
                 String sParcelas = edtParcelas.getText().toString();
                 String sValorEmprestimo = getIntent().getStringExtra("valorEmprestimo");
-
                 int parcelas = Integer.parseInt(sParcelas);
                 double valorEmprestimo = Double.parseDouble(sValorEmprestimo);
                 double valorFinal;
@@ -82,7 +81,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                         txtOpcao1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                                Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -111,7 +110,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                         txtOpcao1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                                Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -157,7 +156,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                         txtOpcao1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                                Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -174,7 +173,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                         txtOpcao2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                                Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -191,7 +190,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                         txtOpcao3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                                Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -208,7 +207,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                         txtOpcao4.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                                Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                                 startActivity(in);
 
                                 SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -256,7 +255,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -273,7 +272,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -290,7 +289,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -307,7 +306,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -354,7 +353,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -371,7 +370,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -388,7 +387,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -405,7 +404,7 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                     txtOpcao4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent in = new Intent(SegundaOpcaoPagamentoAct.this, DadosDetalhadosAct.class);
+                            Intent in = new Intent(OpcaoPagamentoAct.this, DadosDetalhadosAct.class);
                             startActivity(in);
 
                             SharedPreferences dados = getSharedPreferences("salvarDados", MODE_PRIVATE);
@@ -426,6 +425,5 @@ public class SegundaOpcaoPagamentoAct extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

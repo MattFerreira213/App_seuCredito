@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".SegundaOpcaoPagamentoAct"
-    android:id="@+id/activity2">
+    tools:context=".OpcaoPagamentoAct"
+    android:id="@+id/activity1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/btn_voltar2"
+                android:id="@+id/btn_voltar1"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@color/standard_color_light"
@@ -29,6 +29,7 @@
                 android:layout_gravity="center"/>
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:title="@string/app_name"
@@ -51,7 +52,7 @@
                 android:textColor="@color/standard_color_light"/>
 
             <EditText
-                android:id="@+id/edt_view2_parcelas"
+                android:id="@+id/edt_parcelas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="2"
@@ -64,7 +65,7 @@
                 android:backgroundTint="@color/standard_color"/>
 
             <Button
-                android:id="@+id/btn_opcoes_pagamento_view2"
+                android:id="@+id/btn_opcoes_pagamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -74,7 +75,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/txt_view2_opcao1"
+            android:id="@+id/txt_opcao1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -83,7 +84,7 @@
             android:textSize="25sp"/>
 
         <TextView
-            android:id="@+id/txt_view2_opcao2"
+            android:id="@+id/txt_opcao2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -92,7 +93,7 @@
             android:textSize="25sp"/>
 
         <TextView
-            android:id="@+id/txt_view2_opcao3"
+            android:id="@+id/txt_opcao3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -101,7 +102,7 @@
             android:textSize="25sp"/>
 
         <TextView
-            android:id="@+id/txt_view2_opcao4"
+            android:id="@+id/txt_opcao4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -110,3 +111,4 @@
             android:textSize="25sp"/>
     </LinearLayout>
 </ScrollView>
+

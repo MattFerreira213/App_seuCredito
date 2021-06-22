@@ -52,7 +52,7 @@ public class DadosDetalhadosAct extends AppCompatActivity {
         btnVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(DadosDetalhadosAct.this, PrimeiraOpcaoPagamentoAct.class);
+                Intent in = new Intent(DadosDetalhadosAct.this, OpcaoPagamentoAct.class);
                 startActivity(in);
             }
         });

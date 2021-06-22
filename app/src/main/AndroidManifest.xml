@@ -14,16 +14,7 @@
             android:name=".SolicitacaoActivity"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".PrimeiraOpcaoPagamentoAct"
-            android:parentActivityName=".SolicitacaoActivity" />
-        <activity
-            android:name=".SegundaOpcaoPagamentoAct"
-            android:parentActivityName=".SolicitacaoActivity" />
-        <activity
-            android:name=".TerceiraOpcaoPagamentoAct"
-            android:parentActivityName=".SolicitacaoActivity" />
-        <activity
-            android:name=".QuartaOpcaoPagamentoAct"
+            android:name=".OpcaoPagamentoAct"
             android:parentActivityName=".SolicitacaoActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
