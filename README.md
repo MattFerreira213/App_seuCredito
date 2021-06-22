@@ -1,7 +1,6 @@
 # App_seuCredito
 
 ## Descrição
-Nome: SeuCredito
 O app foi todo construído em android com a linguagem Java sem a utilização de um framework
 
 ## Levantar a aplicação
@@ -14,7 +13,7 @@ OBS: O smartphone deve possuir no mínimo o android 5.0 (API 21)
 
 Estará disponível um arquivo APK para instalar no smartphone.
 
-##Regra de negócio
+## Regra de negócio
 O cálculo do empréstimo foi realizado com base no cálculo de juros simples.
 * J=C*i*t
 * valorTotal = C + j
