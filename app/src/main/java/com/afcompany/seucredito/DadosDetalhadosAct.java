@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 public class DadosDetalhadosAct extends AppCompatActivity {
 
@@ -82,6 +85,9 @@ public class DadosDetalhadosAct extends AppCompatActivity {
                 apagar.remove("taxa");
                 apagar.remove("valorTotal");
                 apagar.apply();
+
+                Toast.makeText(DadosDetalhadosAct.this, R.string.error_msg4, LENGTH_SHORT).show();
+                return;
             }
         });
 
@@ -107,6 +113,9 @@ public class DadosDetalhadosAct extends AppCompatActivity {
                 apagar.remove("taxa");
                 apagar.remove("valorTotal");
                 apagar.apply();
+
+                Toast.makeText(DadosDetalhadosAct.this, R.string.error_msg5, LENGTH_SHORT).show();
+                return;
             }
         });
     }

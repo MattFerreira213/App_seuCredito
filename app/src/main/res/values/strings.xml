@@ -5,4 +5,6 @@
     <string name="error_msg2">Todos o campos devem ser preenchidos e diferentes de 0!</string>
     <string name="msg_negado">Valor de emprestimo não permitido!</string>
     <string name="error_msg3">Campo não pode ser nulo!</string>
+    <string name="error_msg4">Emprestimo realizado com sucesso!</string>
+    <string name="error_msg5">Solicitação cancelada</string>
 </resources>
