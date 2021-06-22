@@ -15,7 +15,7 @@ Estará disponível um arquivo APK para instalar no smartphone.
 
 ## Regra de negócio
 O cálculo do empréstimo foi realizado com base no cálculo de juros simples.
-* J=C*i*t
+* J=C x i x t
 * valorTotal = C + j
 
 Para realizar o empréstimo a pessoa deve obrigatoriamente ter uma renda mensal maior ou igual a salário mínimo e ser maior de idade.
