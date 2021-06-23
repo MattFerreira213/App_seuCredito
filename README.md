@@ -1,7 +1,7 @@
 # App_seuCredito
 
 ## Descrição
-O app foi todo construído em android com a linguagem Java sem a utilização de um framework
+O app foi todo construído em android com a linguagem Java.
 
 ## Levantar a aplicação
 Após clonar o repositório, deverá abri-lo na IDE Android Studio
@@ -11,7 +11,7 @@ Sugiro a utilização do smartphone pois utiliza menos memória do computador e 
 
 OBS: O smartphone deve possuir no mínimo o android 5.0 (API 21)
 
-Estará disponível um arquivo APK para instalar diretamente no smartphone e testar a aplicação.
+Estará disponível um arquivo APK (app-debug.apk) para instalar diretamente no smartphone e testar a aplicação.
 
 ## Regra de negócio
 O cálculo do empréstimo foi realizado com base no cálculo de juros simples.
